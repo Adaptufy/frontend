@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { LEVELS } from '@/utils/constants';
 import usePaths from '@/hooks/usePaths';
 import Level from './Level';
@@ -17,6 +17,10 @@ const ProgressStepper: React.FC = () => {
       setActiveLevel(levelId);
     }
   };
+
+  useEffect(() => {
+    window.scrollTo(0, document.body.scrollHeight);
+  }, []);
 
   return (
     <div
