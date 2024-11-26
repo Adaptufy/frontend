@@ -12,6 +12,7 @@ const usePaths = (
   containerRef: RefObject<HTMLDivElement>,
   pathClassName?: string,
   activePathClassName?: string,
+  activeBackPathClassName?: string,
 ) => {
   const [paths, setPaths] = useState<JSX.Element[]>([]);
 
@@ -25,7 +26,7 @@ const usePaths = (
         const end = calculatePosition(levels[index + 1].position, offsetWidth, offsetHeight);
         const isActive = index < activeLevel - 1;
 
-        return createPath(start, end, isActive, index, pathClassName, activePathClassName);
+        return createPath(start, end, isActive, index, pathClassName, activePathClassName, activeBackPathClassName);
       });
 
       setPaths(newPaths);
@@ -37,7 +38,7 @@ const usePaths = (
     return () => {
       window.removeEventListener('resize', updatePaths);
     };
-  }, [activeLevel, containerRef, levels, pathClassName, activePathClassName]);
+  }, [activeLevel, containerRef, levels, pathClassName, activePathClassName, activeBackPathClassName]);
 
   return paths;
 };
