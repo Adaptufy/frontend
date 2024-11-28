@@ -7,8 +7,7 @@ const leftPositions = [
   '10%', '50%'
 ];
 
-const createLevels = (count: number): Level[] => {
-  const levels: Level[] = [];
+const calculateStep = (): number => {
   const screenWidth = window.innerWidth;
   let step = 100;
 
@@ -26,9 +25,17 @@ const createLevels = (count: number): Level[] => {
     }
   }
 
+  return step;
+};
+
+export const STEP = calculateStep();
+
+const createLevels = (count: number): Level[] => {
+  const levels: Level[] = [];
+
   for (let i = 0; i < count; i++) {
     const id = i + 1;
-    const bottom = 20 + i * step;
+    const bottom = 20 + i * STEP;
     const left = leftPositions[i % leftPositions.length];
 
     levels.push({ id, position: { bottom, left } });
