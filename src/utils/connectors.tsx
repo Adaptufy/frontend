@@ -22,13 +22,31 @@ export const createPath = (
   const controlPointX = (start.x + end.x) / 2;
   const verticalOffset = Math.abs(start.y - end.y) / 3;
 
+  const pathD = `M ${
+    start.x
+    } ${
+      start.y
+    } C ${
+      controlPointX
+    } ${
+      end.y - verticalOffset
+    } ${
+      controlPointX
+    } ${
+      start.y + verticalOffset
+    } ${
+      end.x
+    } ${
+      end.y
+    }`;
+
   return (
     <Fragment key={key}>
       {isActive && 
         (
           <path
             key={`path-active-back-${key}`}
-            d={`M ${start.x} ${start.y} C ${controlPointX} ${end.y - verticalOffset} ${controlPointX} ${start.y + verticalOffset} ${end.x} ${end.y}`}
+            d={pathD}
             className={`${pathClassName} ${activePathClassName ?? 'active'} ${activeBackPathClassName ?? 'back'}`}
             strokeDasharray={window.innerWidth}
             strokeDashoffset={window.innerWidth}
@@ -37,14 +55,14 @@ export const createPath = (
       }
       <path
         key={`path-${key}`}
-        d={`M ${start.x} ${start.y} C ${controlPointX} ${end.y - verticalOffset} ${controlPointX} ${start.y + verticalOffset} ${end.x} ${end.y}`}
+        d={pathD}
         className={`${pathClassName}`}
       />
       {isActive && 
         (
           <path
             key={`path-active-${key}`}
-            d={`M ${start.x} ${start.y} C ${controlPointX} ${end.y - verticalOffset} ${controlPointX} ${start.y + verticalOffset} ${end.x} ${end.y}`}
+            d={pathD}
             className={`${pathClassName} ${activePathClassName ?? 'active'}`}
             strokeDasharray={window.innerWidth}
             strokeDashoffset={window.innerWidth}
