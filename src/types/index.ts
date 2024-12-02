@@ -1,3 +1,14 @@
+export interface User {
+  id: number,
+  name: string,
+}
+
+export interface Step {
+  id: number,
+  description: string,
+  short_description: string,
+}
+
 export interface Coordinates {
   x: number;
   y: number;
