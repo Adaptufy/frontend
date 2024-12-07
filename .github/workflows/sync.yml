@@ -28,13 +28,13 @@ jobs:
 
       - name: Copy changes to target repository
         run: |
-          rsync -av --exclude='.git' --exclude='.github/workflows/sync.yml' ./ sync_repo
+          rsync -av --exclude='.git' --exclude='.github/workflows/sync.yml' --exclude='sync_repo/' ./ sync_repo/
           cd sync_repo
           git config user.name "bitdittowit"
           git config user.email "boyarinkov.daniil@gmail.com"
           git add .
           git commit -m "Sync changes from main repo" || echo "No changes to commit"
-    
+
       - name: Push changes
         run: |
           cd sync_repo
