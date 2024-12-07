@@ -1,3 +1,21 @@
+export interface User {
+  id: number,
+  name: string,
+  arrival_date: Date;
+}
+
+export interface Task {
+  description: string;
+  short_description: string;
+  start_date: Date;
+  end_date: Date;
+}
+
+export interface Step {
+  id: number,
+  tasks: Task[];
+}
+
 export interface Coordinates {
   x: number;
   y: number;
